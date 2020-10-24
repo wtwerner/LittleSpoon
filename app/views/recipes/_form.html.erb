@@ -15,6 +15,12 @@
     </div><br>
 
     <div class="field">
+        <% collection_check_boxes(:recipe, :category_ids, Category.all, :id, :name) do |b| %>
+            <%= b.label { b.check_box } %>
+        <% end %>
+    </div><br>
+
+    <div class="field">
         <%= f.submit 'Save' %>
     </div>
 
