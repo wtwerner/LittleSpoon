@@ -1,3 +1,9 @@
+Bundler.require(*Rails.groups)
+
+Dotenv::Railtie.load
+
+HOSTNAME = ENV['HOSTNAME']
+
 require_relative 'boot'
 
 require 'rails/all'
