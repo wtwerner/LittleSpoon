@@ -1,2 +1,2 @@
-<%= render 'form', ingredient: @recipe.ingredients.find(params[:id]) %>
+<%= render 'form', ingredient: @ingredient %>
 <%= button_to("Delete Ingredient", recipe_ingredient_path(@recipe, @ingredient), {:onclick => "return confirm('Are you sure?')", :method => :delete, :remote => true}) %>
