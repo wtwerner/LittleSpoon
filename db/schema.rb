@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_24_212336) do
+ActiveRecord::Schema.define(version: 2020_10_24_213122) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(version: 2020_10_24_212336) do
     t.boolean "favorite", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id"
     t.index ["categories_recipes_id"], name: "index_recipes_on_categories_recipes_id"
     t.index ["ingredients_recipes_id"], name: "index_recipes_on_ingredients_recipes_id"
   end
