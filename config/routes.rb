@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root to: "application#welcome"
   resources :steps
   resources :ingredients
   resources :recipes
