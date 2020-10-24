@@ -10,7 +10,9 @@
 <% if @recipe.ingredients.any? %>
     <hr>
     <h3>Ingredients:</h3>
-    <%= render @recipe.ingredients %>
+    <ul><% @recipe.ingredients.each do |i| %>
+        <li><%= link_to i.name, recipe_ingredient_path(@recipe, i) %></li>
+    <% end %></ul>
 <% end %>
 
 <hr>
