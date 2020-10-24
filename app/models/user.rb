@@ -7,6 +7,8 @@ class User < ApplicationRecord
 
   has_many :ingredients
   has_many :categories
+  has_many :ingredient_recipes, through: :ingredients
+  has_many :recipes, through: :ingredient_recipes
 
   def self.from_omniauth(access_token)
     data = access_token.info
