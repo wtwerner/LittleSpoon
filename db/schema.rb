@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_24_023647) do
+ActiveRecord::Schema.define(version: 2020_10_24_032139) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -28,6 +28,15 @@ ActiveRecord::Schema.define(version: 2020_10_24_023647) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["recipe_id"], name: "index_ingredients_on_recipe_id"
+  end
+
+  create_table "recipe_categories", force: :cascade do |t|
+    t.integer "recipe_id", null: false
+    t.integer "category_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["category_id"], name: "index_recipe_categories_on_category_id"
+    t.index ["recipe_id"], name: "index_recipe_categories_on_recipe_id"
   end
 
   create_table "recipes", force: :cascade do |t|
@@ -64,6 +73,8 @@ ActiveRecord::Schema.define(version: 2020_10_24_023647) do
 
   add_foreign_key "categories", "users"
   add_foreign_key "ingredients", "recipes"
+  add_foreign_key "recipe_categories", "categories"
+  add_foreign_key "recipe_categories", "recipes"
   add_foreign_key "recipes", "categories"
   add_foreign_key "recipes", "users"
   add_foreign_key "steps", "recipes"
