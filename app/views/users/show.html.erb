@@ -1,8 +1,8 @@
 <h1>Welcome <%= current_user.email %>!</h1>
 
-<p><% if current_user.ingredients.recipes.any? { |r| r.favorite == true } %>
+<p><% if current_user.recipes.any? { |r| r.favorite == true } %>
     <h4>Your favorite recipes</h4>
-    <% current_user.ingredients.recipes.each do |r| %>
+    <% current_user.recipes.each do |r| %>
         <% if r.favorite == true %>
             <%= link_to r.name, recipe_path(r) %><br>
         <% end %>
