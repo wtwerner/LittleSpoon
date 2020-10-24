@@ -52,7 +52,9 @@ class IngredientsController < ApplicationController
             :name, 
             :quantity,
             :unit,
-            :recipe_id
+            :recipe_id,
+            :ingredient_recipes_id,
+            :category_recipes_id
         )
     end
 end
