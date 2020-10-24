@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 2020_10_24_023647) do
     t.integer "user_id", null: false
     t.integer "category_id", null: false
     t.text "description"
+    t.boolean "favorite", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["category_id"], name: "index_recipes_on_category_id"
