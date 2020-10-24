@@ -3,6 +3,7 @@
 <p>
     <h2><%= @recipe.name %></h2>
     <%= button_to 'Edit Recipe', edit_recipe_path(@recipe), method: :get %>
+    <%= button_to("Delete Recipe", recipe_path(@recipe), {:onclick => "return confirm('Are you sure?')", :method => :delete, :remote => true}) %>
     <%= button_to 'All Recipes', recipes_path, method: :get %>
 </p>
 
@@ -14,5 +15,5 @@
 
 <hr>
 
-<h3>Add an ingredient:</h3>
+<h4>Add an ingredient:</h4>
 <%= render 'ingredients/form', ingredient: @recipe.ingredients.build %>
