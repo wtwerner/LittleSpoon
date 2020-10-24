@@ -2,7 +2,6 @@
 
 <p>
     <h2><%= @recipe.name %></h2>
-    <%= @recipe.category.name  %>
     <%= button_to 'Edit Recipe', edit_recipe_path(@recipe), method: :get %>
     <%= button_to 'All Recipes', recipes_path, method: :get %>
 </p>
