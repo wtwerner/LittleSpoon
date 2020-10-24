@@ -1,7 +1,0 @@
-<p><h4><%= ingredient.name %> (<%= ingredient.quantity %> <%= ingredient.unit %>)</h4></p>
-
-<%= render 'ingredients/form', ingredient: ingredient %>
-
-<%= button_to "Delete ingredient", recipe_ingredient_path(@recipe, ingredient), method: :delete %>
-
-<hr>

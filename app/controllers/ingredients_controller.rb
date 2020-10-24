@@ -6,6 +6,10 @@ class IngredientsController < ApplicationController
         
     end
 
+    def show
+        
+    end
+
     def create
         @recipe = Recipe.find(params[:recipe_id])
         @ingredient = @recipe.ingredients.create(ingredient_params)
@@ -44,6 +48,7 @@ class IngredientsController < ApplicationController
 
     def ingredient_params
         params.require(:ingredient).permit(
+            :id,
             :name, 
             :quantity,
             :unit,
