@@ -1,9 +1,6 @@
 <div>
     <% @recipes.each do |r| %>
         <h3><%= link_to r.name, recipe_path(r) %></h3>
-        <% r.categories.each do |c| %>
-            <%= c.name %>
-        <% end %><br><br>
     <% end %>
 </div>
 <%= button_to "Create a new recipe", new_recipe_path, method: :get%>
