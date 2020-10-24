@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+    <h2><%= @recipe.name %></h2>
+    <%= @recipe.category.name  %>
+    <%= button_to 'Edit Recipe', edit_recipe_path(@recipe), method: :get %>
+    <%= button_to 'All Recipes', recipes_path, method: :get %>
+</p>
+
+<% if @recipe.ingredients.any? %>
+    <hr>
+    <h3>Ingredients:</h3>
+    <%= render @recipe.ingredients %>
+<% end %>
+
+<hr>
+
+<h3>Add an ingredient:</h3>
+<%= render 'ingredients/form', ingredient: @recipe.ingredients.build %>
