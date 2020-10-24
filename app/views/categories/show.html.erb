@@ -1,0 +1,2 @@
+<%= render 'form' %>
+<%= button_to("Delete Category", category_path(@category), {:onclick => "return confirm('Are you sure?')", :method => :delete, :remote => true}) %>
