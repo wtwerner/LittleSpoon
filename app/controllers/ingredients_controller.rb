@@ -34,7 +34,7 @@ class IngredientsController < ApplicationController
 
     private
 
-    def set_meal
+    def set_recipe
         @recipe = Recipe.find(params[:recipe_id])
     end
 
