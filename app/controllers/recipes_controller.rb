@@ -1,5 +1,6 @@
 class RecipesController < ApplicationController
     before_action :set_recipe, only: [:show, :edit, :update, :destroy]
+    before_action :redirect_cancel, only: [:create, :update]
 
     def new
         @recipe = Recipe.new
@@ -51,6 +52,10 @@ class RecipesController < ApplicationController
 
     def set_recipe
         @recipe = Recipe.find(params[:id])
+    end
+
+    def redirect_cancel
+        redirect_to recipes_path if params[:cancel]
     end
 
     def recipe_params
