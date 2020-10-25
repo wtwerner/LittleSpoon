@@ -7,7 +7,6 @@ class User < ApplicationRecord
 
   has_many :recipes
   has_many :comments
-  has_many :recipes, through: :comments
 
   def self.from_omniauth(access_token)
     data = access_token.info
