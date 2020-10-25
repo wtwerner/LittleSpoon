@@ -11,9 +11,9 @@ class IngredientsController < ApplicationController
     end
 
     def create
-        @recipe = Recipe.find(params[:recipe_id])
-        @ingredient = @recipe.ingredients.create(ingredient_params)
-        redirect_to recipe_path(@recipe)
+        recipe = Recipe.find(params[:recipe_id])
+        @ingredient = recipe.ingredients.create(ingredient_params)
+        redirect_to recipe_path(recipe)
     end
 
     def update
@@ -48,13 +48,10 @@ class IngredientsController < ApplicationController
 
     def ingredient_params
         params.require(:ingredient).permit(
-            :id,
             :name, 
             :quantity,
             :unit,
-            :recipe_id,
-            :ingredient_recipes_id,
-            :category_recipes_id
+            :recipe_id
         )
     end
 end

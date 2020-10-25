@@ -63,7 +63,10 @@ class RecipesController < ApplicationController
             :name,
             :favorite,
             :ingredient_recipes_id,
-            :category_recipes_id
+            :category_recipes_id,
+            :recipe_id,
+            :category_id,
+            ingredient: [:id, :name]
         )
     end
 end
