@@ -1,0 +1,9 @@
+<%= form_with(model: [ @recipe, step ], local: true) do |f| %>
+    <div class="field">
+        <%= f.label :description %>
+        <%= f.text_area :description %>
+    </div>
+    <div>
+        <%= f.submit %>
+    </div>
+<% end %>

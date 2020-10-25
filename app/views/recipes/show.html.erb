@@ -25,3 +25,16 @@
 
 <h4>Add an ingredient:</h4>
 <%= render 'ingredients/form', ingredient: @recipe.ingredients.build %>
+
+<% if @recipe.steps.any? %>
+    <hr>
+    <h3>Instructions:</h3>
+    <ul><% @recipe.steps.each do |s| %>
+        <li><%= link_to s.description, recipe_step_path(@recipe, s) %></li>
+    <% end %></ul>
+<% end %>
+
+<hr>
+
+<h4>Add a step:</h4>
+<%= render 'steps/form', step: @recipe.steps.build %>

@@ -1,0 +1,2 @@
+<%= render 'form', step: @step %>
+<%= button_to("Delete Step", recipe_step_path(@recipe, @step), {:onclick => "return confirm('Are you sure?')", :method => :delete, :remote => true}) %>
