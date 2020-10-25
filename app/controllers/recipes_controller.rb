@@ -33,7 +33,7 @@ class RecipesController < ApplicationController
     end
 
     def public
-        @recipes = Recipe.all.where(public: true)
+        @recipes = Recipe.all.where(public: true).where.not(user_id: current_user.id)
     end
 
     private
