@@ -8,6 +8,9 @@ class User < ApplicationRecord
   has_many :recipes
   has_many :comments
 
+  validates_presence_of :email
+  validates_presence_of :password
+
   def self.from_omniauth(access_token)
     data = access_token.info
     user = User.where(email: data['email']).first
