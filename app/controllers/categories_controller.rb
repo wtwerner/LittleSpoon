@@ -1,4 +1,6 @@
 class CategoriesController < ApplicationController
+    before_action :set_recipe, only: [:show, :edit, :update, :destroy]
+
     def index
         @categories = current_user.categories.all
     end
@@ -26,6 +28,10 @@ class CategoriesController < ApplicationController
     end
 
     private
+
+    def set_recipe
+        @recipe = Recipe.find(params[:recipe_id])
+    end
 
     def category_params
         params.require(:category).permit(

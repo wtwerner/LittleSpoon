@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     resources :comments
     resources :steps
   end
+  resources :recipe_categories
   resources :categories
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   devise_scope :user do

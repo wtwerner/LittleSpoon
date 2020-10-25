@@ -1,9 +1,0 @@
-<%= form_with(model: @category, local: true) do |f| %>
-    <%= f.hidden_field :user_id, value: current_user.id %>
-    <div class="field">
-        <%= f.label :name %>
-        <%= f.text_field :name %>
-    </div>
-        <%= f.submit %>
-    </div>
-<% end %>

@@ -3,6 +3,7 @@ class RecipesController < ApplicationController
 
     def new
         @recipe = Recipe.new
+        @categories = Category.all
     end
 
     def index
@@ -48,7 +49,8 @@ class RecipesController < ApplicationController
             :favorite,
             :public,
             :description,
-            :user_id
+            :user_id,
+            category_ids:[]
         )
     end
 end
