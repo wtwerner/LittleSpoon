@@ -5,6 +5,7 @@ class CreateRecipes < ActiveRecord::Migration[6.0]
       t.text :description
       t.boolean :favorite, default: false
       t.boolean :public, default: false
+      t.belongs_to :user, null: false, foreign_key: true
 
       t.timestamps
     end
