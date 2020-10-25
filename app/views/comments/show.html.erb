@@ -1,0 +1,2 @@
+<%= render 'form', comment: @comment %>
+<%= button_to("Delete Comment", recipe_comment_path(@recipe, @comment), {:onclick => "return confirm('Are you sure?')", :method => :delete, :remote => true}) %>

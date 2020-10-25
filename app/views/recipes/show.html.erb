@@ -54,4 +54,12 @@
     <h2><%= @recipe.name %></h2>
     <p><%= @recipe.description %><br>
 
+    <h4>Add a comment:</h4>
+    <%= render 'comments/form', comment: @recipe.comments.build %>
+
+    <h4>All comments:</h4>
+    <% @recipe.comments.each do |c| %>
+        <%= c.content %><br>
+    <% end %>
+
 <% end %>
