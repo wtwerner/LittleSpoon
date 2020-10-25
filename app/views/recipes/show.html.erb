@@ -2,10 +2,10 @@
 
     <h2><%= @recipe.name %></h2>
     <p><%= @recipe.description %><br>
-    <% if @recipe.favorite = true %>
+    <% if @recipe.favorite == true %>
         <small>(favorite)</small>
     <% end %><br>
-    <% if @recipe.public = true %>
+    <% if @recipe.public == true %>
         <small>(public)</small>
     <% end %>
     </p>
@@ -17,7 +17,7 @@
     <hr>
     <h3>Ingredients:</h3>
     <ul><% @recipe.ingredients.each do |i| %>
-        <li><%= link_to i.name, recipe_ingredient_path(@recipe, i) %></li>
+        <li><%= link_to i.name, recipe_ingredient_path(@recipe, i) %> (<%= i.quantity %> <%= i.unit %>)</li>
     <% end %></ul>
 <% end %>
 
