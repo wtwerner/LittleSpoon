@@ -1,9 +1,11 @@
 class Recipe < ApplicationRecord
-  has_many :ingredient_recipes
-  has_many :category_recipes
-  has_many :ingredients, through: :ingredient_recipes
-  has_many :categories, through: :category_recipes
+  belongs_to :user
+  has_many :recipe_categories
+  has_many :categories, through: :recipe_categories
   has_many :steps
+  has_many :ingredients
+  has_many :comments
 
   accepts_nested_attributes_for :ingredients
+  accepts_nested_attributes_for :steps
 end

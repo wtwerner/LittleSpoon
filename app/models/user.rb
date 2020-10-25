@@ -5,10 +5,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, 
          :omniauthable, :omniauth_providers => [:google_oauth2]
 
-  has_many :ingredients
-  has_many :categories
-  has_many :ingredient_recipes, through: :ingredients
-  has_many :recipes, through: :ingredient_recipes
+  has_many :recipes
+  has_many :comments
+  has_many :recipes, through: :comments
 
   def self.from_omniauth(access_token)
     data = access_token.info
