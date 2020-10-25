@@ -1,5 +1,6 @@
 Rails.application.routes.draw do  
   root to: "application#welcome"
+  get 'recipes/public' => 'recipes#public'
   resources :recipes do
     resources :ingredients
     resources :comments
