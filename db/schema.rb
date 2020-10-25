@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_24_212336) do
+ActiveRecord::Schema.define(version: 2020_10_25_005639) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -18,36 +18,38 @@ ActiveRecord::Schema.define(version: 2020_10_24_212336) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "category_recipes", force: :cascade do |t|
-    t.integer "category_id", null: false
+  create_table "comments", force: :cascade do |t|
+    t.integer "user_id", null: false
     t.integer "recipe_id", null: false
-    t.index ["category_id"], name: "index_category_recipes_on_category_id"
-    t.index ["recipe_id"], name: "index_category_recipes_on_recipe_id"
-  end
-
-  create_table "ingredient_recipes", force: :cascade do |t|
-    t.integer "ingredient_id", null: false
-    t.integer "recipe_id", null: false
-    t.index ["ingredient_id"], name: "index_ingredient_recipes_on_ingredient_id"
-    t.index ["recipe_id"], name: "index_ingredient_recipes_on_recipe_id"
+    t.text "content"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["recipe_id"], name: "index_comments_on_recipe_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "ingredients", force: :cascade do |t|
     t.string "name"
     t.string "unit"
     t.integer "quantity"
-    t.integer "user_id", null: false
-    t.integer "recipes_id", null: false
+    t.integer "recipe_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["recipes_id"], name: "index_ingredients_on_recipes_id"
-    t.index ["user_id"], name: "index_ingredients_on_user_id"
+    t.index ["recipe_id"], name: "index_ingredients_on_recipe_id"
+  end
+
+  create_table "recipe_categories", force: :cascade do |t|
+    t.integer "category_id", null: false
+    t.integer "recipe_id", null: false
+    t.index ["category_id"], name: "index_recipe_categories_on_category_id"
+    t.index ["recipe_id"], name: "index_recipe_categories_on_recipe_id"
   end
 
   create_table "recipes", force: :cascade do |t|
     t.string "name"
     t.text "description"
     t.boolean "favorite", default: false
+    t.boolean "public", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -74,11 +76,10 @@ ActiveRecord::Schema.define(version: 2020_10_24_212336) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "category_recipes", "categories"
-  add_foreign_key "category_recipes", "recipes"
-  add_foreign_key "ingredient_recipes", "ingredients"
-  add_foreign_key "ingredient_recipes", "recipes"
-  add_foreign_key "ingredients", "recipes", column: "recipes_id"
-  add_foreign_key "ingredients", "users"
+  add_foreign_key "comments", "recipes"
+  add_foreign_key "comments", "users"
+  add_foreign_key "ingredients", "recipes"
+  add_foreign_key "recipe_categories", "categories"
+  add_foreign_key "recipe_categories", "recipes"
   add_foreign_key "steps", "recipes"
 end
