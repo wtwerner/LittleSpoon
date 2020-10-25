@@ -4,6 +4,7 @@ class CreateRecipes < ActiveRecord::Migration[6.0]
       t.string :name
       t.text :description
       t.boolean :favorite, default: false
+      t.boolean :public, default: false
 
       t.timestamps
     end
