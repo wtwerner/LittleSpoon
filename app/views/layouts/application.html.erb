@@ -26,7 +26,8 @@
           <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
                 <%= link_to "Home", root_url, class: "nav-item nav-link" %>
-                <%= link_to "Recipes", recipes_url, class: "nav-item nav-link" %>
+                <%= link_to "My Recipes", recipes_url, class: "nav-item nav-link" %>
+                <%= link_to "Discover Recipes", '/recipes/public', class: "nav-item nav-link" %>
             </div>
             <div class="navbar-nav ml-auto">
               <% if user_signed_in? %>
