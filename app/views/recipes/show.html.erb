@@ -1,11 +1,17 @@
 <p id="notice"><%= notice %></p>
 
-<p>
     <h2><%= @recipe.name %></h2>
+    <p><%= @recipe.description %><br>
+    <% if @recipe.favorite = true %>
+        <small>(favorite)</small>
+    <% end %><br>
+    <% if @recipe.public = true %>
+        <small>(public)</small>
+    <% end %>
+    </p>
     <%= button_to 'Edit Recipe', edit_recipe_path(@recipe), method: :get %>
     <%= button_to("Delete Recipe", recipe_path(@recipe), {:onclick => "return confirm('Are you sure?')", :method => :delete, :remote => true}) %>
     <%= button_to 'All Recipes', recipes_path, method: :get %>
-</p>
 
 <% if @recipe.ingredients.any? %>
     <hr>
