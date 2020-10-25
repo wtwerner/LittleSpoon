@@ -1,3 +1,9 @@
-<% @recipes.each do |r| %>
-    <%= link_to r.name, recipe_path(r) %>
+<% @recipes.in_groups_of(4, false).each do |group| %>
+    <div class ='row'>
+        <% group.each do |recipe| %>
+            <div class='col-md-3'>
+                <h4><%= link_to recipe.name, recipe_path(recipe) %></h4>
+            </div>
+        <% end %>
+    </div>
 <% end %>
