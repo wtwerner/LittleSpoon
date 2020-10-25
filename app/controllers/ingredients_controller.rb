@@ -12,19 +12,22 @@ class IngredientsController < ApplicationController
 
     def create
         recipe = Recipe.find(params[:recipe_id])
-        @ingredient = recipe.ingredients.create(ingredient_params)
-        redirect_to recipe_path(recipe)
+        @ingredient = recipe.ingredients.new(ingredient_params)
+        if @ingredient.valid?
+            @ingredient.save
+            redirect_to recipe_path(recipe)
+        else
+            redirect_to recipe_path(recipe)
+        end
     end
 
     def update
-        respond_to do |format|
-            if @ingredient.update(ingredient_params)
-                format.html { redirect_to @recipe, notice: 'Ingredient was successfully updated.'}
-                format.json { render :show, status: :ok, location: @recipe }
-            else
-                format.html { render :edit }
-                format.json { render json: @ingredient.errors, status: :unprocessable_entity }
-            end
+        @ingredient.assign_attributes(ingredient_params)
+        if @ingredient.valid?
+            @ingredient.save
+            redirect_to @recipe
+        else
+            redirect_to @recipe
         end
     end
 
