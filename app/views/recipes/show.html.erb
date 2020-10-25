@@ -1,46 +1,54 @@
 <% if @recipe.user.id == current_user.id %>
+    <div class='container'>
+        <div class='row'>
+            <div class='col-lg'>
+                <h2><%= @recipe.name %></h2>
+                <p><%= @recipe.description %><br>
+                <% if @recipe.favorite == true %>
+                    <small>(favorite)</small>
+                <% end %><br>
+                <% if @recipe.public == true %>
+                    <small>(public)</small>
+                <% end %>
+                </p>
+            </div>
+            <div class='col-lg'>
+                <%= button_to 'Edit Recipe', edit_recipe_path(@recipe), method: :get %>
+                <%= button_to("Delete Recipe", recipe_path(@recipe), {:onclick => "return confirm('Are you sure?')", :method => :delete, :remote => true}) %>
+                <%= button_to 'All Recipes', recipes_path, method: :get %>
+            </div>
+        </div>
+        <div class='row'>
+            <div class='col-lg'>
+                <% if @recipe.ingredients.any? %>
+                    <hr>
+                    <h3>Ingredients:</h3>
+                    <ul><% @recipe.ingredients.each do |i| %>
+                        <li><%= link_to i.name, recipe_ingredient_path(@recipe, i) %> (<%= i.quantity %> <%= i.unit %>)</li>
+                    <% end %></ul>
+                <% end %>
 
-    <p id="notice"><%= notice %></p>
+                <hr>
 
-        <h2><%= @recipe.name %></h2>
-        <p><%= @recipe.description %><br>
-        <% if @recipe.favorite == true %>
-            <small>(favorite)</small>
-        <% end %><br>
-        <% if @recipe.public == true %>
-            <small>(public)</small>
-        <% end %>
-        </p>
-        <%= button_to 'Edit Recipe', edit_recipe_path(@recipe), method: :get %>
-        <%= button_to("Delete Recipe", recipe_path(@recipe), {:onclick => "return confirm('Are you sure?')", :method => :delete, :remote => true}) %>
-        <%= button_to 'All Recipes', recipes_path, method: :get %>
+                <h4>Add an ingredient:</h4>
+                <%= render 'ingredients/form', ingredient: @recipe.ingredients.build %>
+            </div>
+            <div class='col-lg'>
+                <% if @recipe.steps.any? %>
+                    <hr>
+                    <h3>Instructions:</h3>
+                    <ul><% @recipe.steps.each do |s| %>
+                        <li><%= link_to s.description, recipe_step_path(@recipe, s) %></li>
+                    <% end %></ul>
+                <% end %>
 
-    <% if @recipe.ingredients.any? %>
-        <hr>
-        <h3>Ingredients:</h3>
-        <ul><% @recipe.ingredients.each do |i| %>
-            <li><%= link_to i.name, recipe_ingredient_path(@recipe, i) %> (<%= i.quantity %> <%= i.unit %>)</li>
-        <% end %></ul>
-    <% end %>
+                <hr>
 
-    <hr>
-
-    <h4>Add an ingredient:</h4>
-    <%= render 'ingredients/form', ingredient: @recipe.ingredients.build %>
-
-    <% if @recipe.steps.any? %>
-        <hr>
-        <h3>Instructions:</h3>
-        <ul><% @recipe.steps.each do |s| %>
-            <li><%= link_to s.description, recipe_step_path(@recipe, s) %></li>
-        <% end %></ul>
-    <% end %>
-
-    <hr>
-
-    <h4>Add a step:</h4>
-    <%= render 'steps/form', step: @recipe.steps.build %>
-
+                <h4>Add a step:</h4>
+                <%= render 'steps/form', step: @recipe.steps.build %>
+            </div>
+        </div>
+    </div>
 <% else %>
 
     <h2><%= @recipe.name %></h2>
