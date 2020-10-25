@@ -19,13 +19,23 @@ class RecipesController < ApplicationController
     end
 
     def create
-        @recipe = Recipe.create(recipe_params)
-        redirect_to recipe_path(@recipe)
+        @recipe = Recipe.new(recipe_params)
+        if @recipe.valid?
+            @recipe.save
+            redirect_to recipe_path(@recipe)
+        else
+            render :new
+        end
     end
 
     def update
-        @recipe.update(recipe_params)
-        redirect_to @recipe
+        @recipe.assign_attributes(recipe_params)
+        if @recipe.valid?
+            @recipe.save
+            redirect_to @recipe
+        else
+            render :edit
+        end
     end
 
     def destroy
