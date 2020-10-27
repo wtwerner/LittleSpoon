@@ -45,10 +45,14 @@ class RecipesController < ApplicationController
     end
 
     def public
-        @recipes = Recipe.all.where(public: true).where.not(user_id: current_user.id)
+        @recipes = public_recipes
     end
 
     private
+
+    def public_recipes
+        Recipe.all.where(public: true).where.not(user_id: current_user.id)
+    end
 
     def set_recipe
         @recipe = Recipe.find(params[:id])
