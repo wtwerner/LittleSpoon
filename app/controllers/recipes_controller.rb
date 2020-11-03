@@ -45,7 +45,7 @@ class RecipesController < ApplicationController
     end
 
     def public
-        @recipes = Recipe.public_recipes
+        @recipes = Recipe.published.where.not(user_id: current_user.id)
     end
 
     private
