@@ -7,4 +7,6 @@ class Recipe < ApplicationRecord
   has_many :comments, dependent: :destroy
 
   validates :name, presence: true
+
+  scope :public_recipes, -> { where(public: true) }
 end
