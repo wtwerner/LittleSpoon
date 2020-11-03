@@ -32,9 +32,16 @@ Category.create!([
     user.save!
 end
 
-users = User.order(:created_at).take(6)
-20.times do
-    name = Faker::Food.dish
+50.times do
+    name = Faker::Food.unique.dish
+    user = User.all.sample
     description = Faker::Food.description
-    users.each { |user| user.recipes.create!(name: name, public: true, description: description) }
+    user.recipes.create!(name: name, public: true, description: description)
+end
+
+cat_ids = Category.all.ids
+rec_ids = Recipe.all.ids
+
+rec_ids.each do |id|
+    RecipeCategory.create(recipe_id: id, category_id: cat_ids.sample)
 end
