@@ -8,5 +8,5 @@ class Recipe < ApplicationRecord
 
   validates :name, presence: true
 
-  scope :public_recipes, -> { where(public: true) }
+  scope :published, -> { where(public: true) }
 end
