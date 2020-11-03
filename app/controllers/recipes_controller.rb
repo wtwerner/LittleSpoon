@@ -46,6 +46,11 @@ class RecipesController < ApplicationController
 
     def public
         @recipes = Recipe.published.where.not(user_id: current_user.id)
+        if params[:search]
+            @recipes = Recipe.published.search(params[:search]).order("created_at DESC")
+        else
+            @recipes = Recipe.published.order('created_at DESC')
+        end
     end
 
     private

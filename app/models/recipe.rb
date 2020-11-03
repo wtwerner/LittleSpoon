@@ -9,4 +9,8 @@ class Recipe < ApplicationRecord
   validates :name, presence: true
 
   scope :published, -> { where(public: true) }
+
+  def self.search(search)
+    where("name LIKE ?", "%#{search}%") 
+  end
 end
