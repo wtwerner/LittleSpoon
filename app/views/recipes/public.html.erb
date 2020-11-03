@@ -1,22 +1,27 @@
-<%= form_tag(recipes_public_path, :method => "get", id: "search-form") do %>
-    <%= text_field_tag :search, params[:search], placeholder: "Search Recipes" %>
-    <%= submit_tag "Search" %>
-<% end %>
-
-<% @recipes.in_groups_of(4, false).each do |group| %>
-    <div class ='row'>
-        <% group.each do |recipe| %>
-            <div class='col-md-3'>
-                <div class='card'>
-                    <div class='card-body'>
-                        <h5 class='card-title'><%= link_to recipe.name, recipe_path(recipe) %></h5>
-                        <p class="card-text"><% recipe.categories.each do |c| %>
-                            <%= c.name %>
-                        <% end %>
-                        </p>
+<div class="form-inline">
+    <%= form_tag(recipes_public_path, :method => "get", id: "search-form") do %>
+        <%= text_field_tag :search, params[:search], placeholder: "Search Recipes", class: "form-control" %>
+        <%= submit_tag "Search", class: 'btn btn-primary' %>
+        <%= link_to "Reset search", recipes_public_path %>
+    <% end %>
+</div>
+<br>
+<div>
+    <% @recipes.in_groups_of(4, false).each do |group| %>
+        <div class ='row'>
+            <% group.each do |recipe| %>
+                <div class='col-md-3'>
+                    <div class='card'>
+                        <div class='card-body'>
+                            <h5 class='card-title'><%= link_to recipe.name, recipe_path(recipe) %></h5>
+                            <p class="card-text"><% recipe.categories.each do |c| %>
+                                <%= c.name %>
+                            <% end %>
+                            </p>
+                        </div>
                     </div>
                 </div>
-            </div>
-        <% end %>
-    </div><br>
-<% end %>
+            <% end %>
+        </div><br>
+    <% end %>
+</div>
