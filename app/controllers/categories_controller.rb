@@ -1,5 +1,6 @@
 class CategoriesController < ApplicationController
     before_action :set_recipe, only: [:show, :edit, :update, :destroy]
+    before_action :set_category, only: [:show, :destroy]
 
     def index
         @categories = current_user.categories.all
@@ -15,11 +16,10 @@ class CategoriesController < ApplicationController
     end
 
     def show
-        @category = current_user.categories.all.find(params[:id])
+        
     end
 
     def destroy
-        @category = current_user.categories.all.find(params[:id])
         @category.destroy
         respond_to do |format|
             format.html { redirect_to categories_path, notice: 'Category was successfully deleted.' }
@@ -28,6 +28,10 @@ class CategoriesController < ApplicationController
     end
 
     private
+
+    def set_category
+        @category = current_user.categories.all.find(params[:id])
+    end
 
     def set_recipe
         @recipe = Recipe.find(params[:recipe_id])
