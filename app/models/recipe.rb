@@ -9,6 +9,7 @@ class Recipe < ApplicationRecord
   validates :name, presence: true
 
   scope :published, -> { where(public: true) }
+  scope :alphabetized, -> { order("name ASC") }
 
   def self.search(search)
     where("name LIKE ?", "%#{search}%") 
